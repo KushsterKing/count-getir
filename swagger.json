@@ -112,7 +112,7 @@
       "properties": {
         "code": {
           "type": "number",
-          "example": 1
+          "example": 7
         },
         "msg": {
           "type": "string",
