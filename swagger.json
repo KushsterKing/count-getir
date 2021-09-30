@@ -1,0 +1,128 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.1.5",
+    "title": "Getir Api's",
+    "description": "The following page will contain example and description of the API method and its responses.\n In this document we will look into how to access, and use the API.\n\n <b>General work flow</b>\n- Enter startDate, endDate, maxCount, minCount and get records within that range"
+  },
+  "host": "whispering-eyrie-06932.herokuapp.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "code-getir",
+      "description": "API endpoints"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/records/count": {
+      "post": {
+        "tags": [
+          "records"
+        ],
+        "description": "<b>Get records with conditions</b>",
+        "parameters": [
+          {
+            "name": "records",
+            "in": "body",
+            "description": "<b><font color='red'>Mandatory Fields: </font></b>startDate, endDate, minCount and maxCount",
+            "schema": {
+              "properties": {
+                "startDate": {
+                  "type": "string",
+                  "example": "2014-01-01"
+                },
+                "endDate": {
+                  "type": "string",
+                  "example": "2015-01-13"
+                },
+                "minCount": {
+                  "type": "number",
+                  "example": 100
+                },
+                "maxCount": {
+                  "type": "number",
+                  "example": 1000
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Get records",
+            "schema": {
+              "$ref": "#definitions/SuccessResponse"
+            }
+          },
+          "401": {
+            "description": "Missing Field",
+            "schema": {
+              "$ref": "#definitions/MissingFieldErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "SuccessResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "number",
+          "example": 0
+        },
+        "msg": {
+          "type": "string",
+          "example": "Success"
+        },
+        "records": {
+          "type": "string",
+          "example": [
+            {
+              "key":"TAKwGc6Jr4i8Z487",
+              "createdAt":"2017-01-28T01:22:14.398Z",
+              "totalCount":2800
+            },
+            {
+              "key":"NAeQ8eX7e5TEg7oH",
+              "createdAt":"2017-01-27T08:19:14.135Z",
+              "totalCount":2900
+            }
+          ]
+        }
+      }
+    },
+
+    "MissingFieldErrorResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "number",
+          "example": 1
+        },
+        "msg": {
+          "type": "string",
+          "example": "Error"
+        },
+        "error": {
+          "type": "string",
+          "example": "missing field error"
+        }
+      }
+    }
+  }
+}

@@ -26,9 +26,9 @@ class recordsController{
                 if (resultValidation.error) {
 
                     response = {
-                        status: 400,
-                        success: false,
-                        message: 'Field ' + resultValidation.error.details[0].message,
+                        code: 7,
+                        msg: "Error",
+                        error: 'Field ' + resultValidation.error.details[0].message,
                     };
 
                     return res.status(400).json(response);
