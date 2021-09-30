@@ -48,6 +48,7 @@ class recordsController{
                     },
                     {
                         $project: {
+                            _id: 0,
                             key: 1,
                             createdAt: 1,
                             totalCount: {
